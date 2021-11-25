@@ -32,6 +32,7 @@ group :development, :test do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'rspec-rails', "4.0.1"
 
   gem 'factory_bot_rails'
   gem 'faker'
@@ -48,7 +49,6 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
   gem "capybara", "~> 2.15.1"
   gem "selenium-webdriver", "~> 3.5.1"
   gem "launchy", "~> 2.4.3"
