@@ -6,8 +6,6 @@ ruby '2.7.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -65,3 +63,5 @@ gem 'active_model_serializers'
 
 # compatible with spec config version
 gem "webpacker", github: "rails/webpacker", ref: "b6c2180"
+
+gem "pg"
