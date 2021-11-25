@@ -1,4 +1,6 @@
 class Lawyer < ApplicationRecord
+  enum avatar: [:mia, :pheonix]
+
   validates :full_name, presence: true
   validates_uniqueness_of :full_name
   SPEECHCRAFT_LIMITS = { min: 5, max: 20}

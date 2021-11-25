@@ -4,6 +4,7 @@ class CreateLawyers < ActiveRecord::Migration[6.1]
       t.string :full_name
       t.integer :speechcraft
       t.integer :credibility
+      t.integer :avatar, deflault: 0
 
       t.timestamps
     end
