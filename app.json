@@ -1,0 +1,36 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "NODE_ENV=test NODE_OPTIONS='--max-old-space-size=8192' bundle exec rails webpacker:compile",
+        "test": "bundle exec rspec"
+      },
+      "addons": [
+        "heroku-postgresql:in-dyno"
+      ],
+      "buildpacks": [{
+          "url": "https://github.com/heroku/heroku-buildpack-chromedriver"
+        },
+        {
+          "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+        },
+        {
+          "url": "heroku/nodejs"
+        },
+        {
+          "url": "heroku/ruby"
+        }
+      ]
+    }
+  },
+  "buildpacks": [{
+      "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
