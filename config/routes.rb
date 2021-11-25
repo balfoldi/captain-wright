@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  get 'court/index'
+  
   namespace :api do
     resources :lawyers, except: [:edit, :new]
   end
