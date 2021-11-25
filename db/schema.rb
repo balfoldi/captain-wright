@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_11_25_133352) do
     t.string "full_name"
     t.integer "speechcraft"
     t.integer "credibility"
+    t.integer "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
