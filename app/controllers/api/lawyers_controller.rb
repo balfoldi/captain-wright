@@ -26,7 +26,7 @@ class Api::LawyersController < Api::BaseController
   private
 
   def lawyer_params
-    params.require(:lawyer).permit(:full_name, :speechcraft, :credibility)
+    params.require(:lawyer).permit(:full_name, :speechcraft, :credibility, :avatar)
   end
 
   def set_lawyer
