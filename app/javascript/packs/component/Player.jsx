@@ -53,7 +53,18 @@ const Player = ({ playerName }) => {
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        credibility: fetchPlayersState[playerName].credibility * 1.5
+        credibility: fetchPlayersState[playerName].credibility + 50
+      }
+    }))
+    dispatch(nextTurn())
+  }
+
+  const handleObjection = () => {
+    setState("object")
+    dispatch(updatePlayers({
+      [playerName]: {
+        ...fetchPlayersState[playerName],
+        speechcraft: fetchPlayersState[playerName].speechcraft + 20
       }
     }))
     dispatch(nextTurn())
@@ -81,7 +92,7 @@ const Player = ({ playerName }) => {
             Defend{" "}
             <FontAwesomeIcon className="text-secondary" icon={faMehRollingEyes} size="lg" />
           </Button>
-          <Button variant="outline-danger" className="w-100 text-dark mb-1" disabled={active}>
+          <Button onClick={handleObjection} variant="outline-danger" className="w-100 text-dark mb-1" disabled={active}>
             Object!{" "}
             <FontAwesomeIcon className="text-danger" icon={faLaughSquint} size="lg" />
           </Button>
