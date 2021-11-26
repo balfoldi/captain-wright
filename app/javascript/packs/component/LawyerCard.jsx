@@ -15,7 +15,6 @@ import { colors, displays } from "../modules/playersObjects"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const LawyerCard = ({ fetchLawyer }) => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
@@ -39,6 +38,10 @@ const LawyerCard = ({ fetchLawyer }) => {
   useEffect(() => {
     setActive(selected === fetchPlayersState.turn)
   }, [selected, fetchPlayersState])
+
+  useEffect(() => {
+    active && createPlayers({[fetchPlayersState.turn]: lawyer})
+  }, [lawyer])
 
   const gifs = {
     pheonix,
