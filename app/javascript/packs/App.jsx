@@ -1,5 +1,5 @@
 //modules
-import React, { useEffect } from 'react'
+import React from 'react'
 import AlertTemplate from 'react-alert-template-basic'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import { Routes, Route } from 'react-router-dom';

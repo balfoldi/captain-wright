@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Card from 'react-bootstrap/Card'
-import Button from "react-bootstrap/Button"
 
 import mia from '../../images/avatars/mia/miaIdle.gif'
 import pheonix from '../../images/avatars/pheonix/pheonixIdle.gif'
