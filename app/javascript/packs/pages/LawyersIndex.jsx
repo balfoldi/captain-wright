@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react'
 
 import LawyerCard from "../component/LawyerCard"
 import Button from "react-bootstrap/Button"
-import Modal from "react-bootstrap/Modal"
 import LawyerForm from '../component/LawyerForm'
 
 const LawyersIndex = () => {
   const [lawyers, setLawyers] = useState([])
 
-  const [show, setShow] = useState(true);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const [showNew, setShowNew] = useState(false);
 
   const fetchLawyers = () => {
     fetch("/api/lawyers")
@@ -27,7 +22,7 @@ const LawyersIndex = () => {
   return (
     <>
       <h1 className="text-center">Lawyers</h1>
-      <Button className="fixed-bottom btn btn-success m-2" onClick={handleShow}>
+      <Button className="fixed-bottom btn btn-success m-2" onClick={() => setShowNew(true)}>
         +
       </Button>
       <div className="d-flex flex-wrap justify-content-around">
@@ -35,11 +30,7 @@ const LawyersIndex = () => {
           <LawyerCard key={lawyer.id} lawyer={lawyer} />
         ))}
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body>
-          <LawyerForm />
-        </Modal.Body>
-      </Modal>
+      <LawyerForm showNew={showNew} setShowNew={setShowNew} />
     </>
   )
 }
