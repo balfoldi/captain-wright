@@ -9,6 +9,7 @@ import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux";
 import { createPlayers } from "../redux"
 
+import { colors, displays } from "../modules/playersObjects"
 
 const LawyerCard = ({ lawyer }) => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
@@ -17,10 +18,10 @@ const LawyerCard = ({ lawyer }) => {
 
   useEffect(() => {
     ["left", "right"].find(player_name => {
-      if(fetchPlayersState[player_name].id === lawyer.id){
+      if (fetchPlayersState[player_name].id === lawyer.id) {
         setSelected(player_name)
         return true
-      }else{
+      } else {
         setSelected(false)
       }
     })
@@ -35,16 +36,6 @@ const LawyerCard = ({ lawyer }) => {
     mia
   }
 
-  const colors = {
-    left: "success",
-    right: "primary",
-  }
-
-  const display = {
-    left: "P1",
-    right: "P2",
-  }
-
   const setPlayerCreate = () => {
     dispatch(createPlayers({ [fetchPlayersState.turn]: lawyer }))
   }
@@ -56,7 +47,7 @@ const LawyerCard = ({ lawyer }) => {
       whileTap={{ scale: 0.95 }}
     >
       <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={setPlayerCreate}>
-        {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{display[selected]}</h1></Card>}
+        {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{displays[selected]}</h1></Card>}
         <Card.Img src={gifs[avatar]} />
         <Card.Body>
           <Card.Title>{full_name}</Card.Title>

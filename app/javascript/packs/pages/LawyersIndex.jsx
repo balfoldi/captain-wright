@@ -7,6 +7,8 @@ import LawyerForm from '../component/LawyerForm'
 import { useDispatch, useSelector } from "react-redux";
 import { nextTurn } from "../redux"
 
+import { colors, displays } from "../modules/playersObjects"
+
 const LawyersIndex = () => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyers, setLawyers] = useState([])
@@ -25,8 +27,10 @@ const LawyersIndex = () => {
 
   return (
     <>
-      <h1 className="text-center">Lawyers</h1>
-      <i>Choose your lawyer!</i>
+      <div className="text-center">
+        <h1>Lawyers</h1>
+        <i className="display-4"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose your lawyer!</i>
+      </div>
       <div className="fixed-bottom">
         <Button className="btn btn-success m-2" onClick={() => setShowNew(true)}>
           +
