@@ -12,7 +12,7 @@ import { colors, displays } from "../modules/playersObjects"
 const LawyersIndex = () => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyers, setLawyers] = useState([])
-  const [showNew, setShowNew] = useState(false);
+  const [showNew, setShowNew] = useState(true);
   const dispatch = useDispatch();
 
   const fetchLawyers = () => {
@@ -43,10 +43,10 @@ const LawyersIndex = () => {
       </div>
       <div className="d-flex flex-wrap justify-content-around">
         {lawyers.map(lawyer => (
-          <LawyerCard key={lawyer.id} fetchLawyer={lawyer} setLawyers={setLawyers}/>
+          <LawyerCard key={lawyer.id} fetchLawyer={lawyer} setLawyers={setLawyers} />
         ))}
       </div>
-      <LawyerForm show={showNew} setShow={setShowNew} />
+      <LawyerForm show={showNew} setShow={setShowNew} lawyers={lawyers}/>
     </>
   )
 }

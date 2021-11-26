@@ -4,12 +4,17 @@ import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button"
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Modal from "react-bootstrap/Modal"
+import Alert from "react-bootstrap/Alert"
 
 import mia from '../../images/avatars/mia/miaIdle.gif'
 import pheonix from '../../images/avatars/pheonix/pheonixIdle.gif'
 
-const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
+import { useAlert } from 'react-alert'
+
+const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow, lawyers }) => {
+  const alert = useAlert()
   const [showDelete, setShowDelete] = useState(false)
+  const [errors, setErrors] = useState(null)
   const { avatar, full_name, speechcraft, credibility } = lawyer
   const stats = ["speechcraft", "credibility"]
   const gifs = {
@@ -23,7 +28,7 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
 
   const [input, setInput] = useState({
     avatar: avatar || "pheonix",
-    full_name: full_name || "",
+    full_name: full_name || "titi",
     speechcraft: speechcraft || 50,
     credibility: credibility || 60,
   })
@@ -60,15 +65,66 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
       .then(() => {
         setLawyer({})
         setShowDelete(false)
+        alert.show(`Lawyer ${input.full_name} deletion success`, { type: "success" })
       })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    lawyer.id ? fetchUpdate() : fetchCreate()
+  }
+
+  const fetchCreate = () => {
+    console.log("CREATE", JSON.stringify(input))
+    fetch("/api/lawyers", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(input),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors) {
+          return (handleError(response))
+        } else {
+          lawyers.concat(response)
+          setShow(false)
+          alert.show(`Lawyer ${input.full_name} creation success`, { type: "success" })
+        }
+      })
+  }
+
+  const fetchUpdate = () => {
+    fetch("/api/lawyers/" + lawyer.id, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ lawyer: input }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors) {
+          return (handleError(response))
+        } else {
+          setLawyer(response)
+          setShow(false)
+          alert.show(`Lawyer ${input.full_name} update success`, { type: "success" })
+        }
+      })
+  }
+
+  const handleError = (response) => {
+    setErrors(response.errors)
   }
 
   return (
     <div>
       <Modal show={show} onHide={() => setShow(false)}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Create a lawyer</Modal.Title>
+            <Modal.Title>{lawyer.id ? "Update" : "Create"} a lawyer</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form.Group className="mb-3">
@@ -129,6 +185,10 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
             <Button variant="success" type="submit">
               Submit
             </Button>
+            {errors && <Alert variant="danger" onClose={() => setErrors(null)} dismissible>
+              {errors.map(error => <Alert.Heading>{error}</Alert.Heading>)}
+            </Alert>
+            }
           </Modal.Footer>
         </Form>
       </Modal>
