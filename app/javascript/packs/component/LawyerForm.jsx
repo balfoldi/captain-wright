@@ -55,6 +55,14 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
     })
   }
 
+  const fetchDelete = () => {
+    fetch("/api/lawyers/" + lawyer.id, { method: "DELETE" })
+      .then(() => {
+        setLawyer({})
+        setShowDelete(false)
+      })
+  }
+
   return (
     <div>
       <Modal show={show} onHide={() => setShow(false)}>
@@ -113,7 +121,7 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
           </Modal.Body>
           <Modal.Footer className="d-flex justify-content-around">
             <Button variant="secondary" onClick={() => setShow(false)}>
-              Close
+              Cancel
             </Button>
             {lawyer.id && <Button variant="warning" onClick={() => setShowDelete(true)}>
               Delete
@@ -128,11 +136,11 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow }) => {
         <Modal.Header>
           <i>Are you sure to delete this lawyer?</i>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="d-flex justify-content-around">
           <Button variant="secondary" onClick={() => setShowDelete(false)}>
             Cancel
           </Button>
-          <Button variant="danger" onClick="">
+          <Button variant="danger" onClick={fetchDelete}>
             yes
           </Button>
         </Modal.Body>
