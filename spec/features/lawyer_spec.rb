@@ -40,7 +40,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
       before do
         visit "/court/lawyers"
         find_all(:css, "img").first.click
-        find(:css, ".fa-edit").click
+        find_all(:css, ".fa-edit").first.click
         fill_in(:full_name, with: full_name)
         click_button("Submit")
       end
@@ -59,7 +59,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
       before do
         visit "/court/lawyers"
         find_all(:css, "img").first.click
-        find(:css, ".fa-edit").click
+        find_all(:css, ".fa-edit").first.click
         click_button("Delete")
         click_button("Yes")
       end
