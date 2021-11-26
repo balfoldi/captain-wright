@@ -88,7 +88,7 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow, lawyers }) => {
         if (response.errors) {
           return (handleError(response))
         } else {
-          lawyers.concat(response)
+          lawyers.unshift(response)
           setShow(false)
           alert.show(`Lawyer ${input.full_name} creation success`, { type: "success" })
         }

@@ -12,7 +12,7 @@ import { colors, displays } from "../modules/playersObjects"
 const LawyersIndex = () => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyers, setLawyers] = useState([])
-  const [showNew, setShowNew] = useState(true);
+  const [showNew, setShowNew] = useState(false);
   const dispatch = useDispatch();
 
   const fetchLawyers = () => {
