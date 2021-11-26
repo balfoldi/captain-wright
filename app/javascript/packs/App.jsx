@@ -4,6 +4,11 @@ import AlertTemplate from 'react-alert-template-basic'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import { Routes, Route } from 'react-router-dom';
 
+//redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+//pages
 import LawyersIndex from "./pages/LawyersIndex"
 import Courtroom from "./pages/Courtroom"
 
@@ -22,12 +27,14 @@ const App = () => {
   }
 
   return (
-    <AlertProvider template={AlertTemplate} {...options}>
-      <Routes>
-        <Route path="/court/lawyers" element={<LawyersIndex />} />
-        <Route path="/court/room" element={<Courtroom />} />
-      </Routes>
-    </AlertProvider>
+    <Provider store={store}>
+      <AlertProvider template={AlertTemplate} {...options}>
+        <Routes>
+          <Route path="/court/lawyers" element={<LawyersIndex />} />
+          <Route path="/court/room" element={<Courtroom />} />
+        </Routes>
+      </AlertProvider>
+    </Provider>
   );
 };
 
