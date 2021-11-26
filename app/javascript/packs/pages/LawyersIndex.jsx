@@ -26,7 +26,7 @@ const LawyersIndex = () => {
   return (
     <>
       <h1 className="text-center">Lawyers</h1>
-      <i>Choose your lowyer!</i>
+      <i>Choose your lawyer!</i>
       <div className="fixed-bottom">
         <Button className="btn btn-success m-2" onClick={() => setShowNew(true)}>
           +
