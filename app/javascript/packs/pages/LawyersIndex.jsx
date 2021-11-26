@@ -9,6 +9,8 @@ import { nextTurn } from "../redux"
 
 import { colors, displays } from "../modules/playersObjects"
 
+import { Link } from 'react-router-dom';
+
 const LawyersIndex = () => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyers, setLawyers] = useState([])
@@ -32,13 +34,20 @@ const LawyersIndex = () => {
         <i className="display-4"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose your lawyer!</i>
       </div>
       <div className="fixed-bottom">
-        <Button className="btn btn-success m-2" onClick={() => setShowNew(true)}>
+        <Button variant="primary" onClick={() => setShowNew(true)}>
           +
         </Button>
         {fetchPlayersState[fetchPlayersState.turn].id && (
-          <Button className="btn btn-danger m-2" onClick={() => dispatch(nextTurn())}>
+          <Button variant="success" onClick={() => dispatch(nextTurn())}>
             Next player!
           </Button>
+        )}
+        {fetchPlayersState.left.id && fetchPlayersState.right.id && (
+          <Link to="/court/room">
+          <Button className="btn btn-danger m-2">
+            Go to the courtroom
+          </Button>
+          </Link>
         )}
       </div>
       <div className="d-flex flex-wrap justify-content-around">

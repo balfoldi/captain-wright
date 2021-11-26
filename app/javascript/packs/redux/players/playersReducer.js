@@ -6,8 +6,20 @@ import {
 } from './playersTypes'
 
 const playersInitialState = {
-  left: {},
-  right: {},
+  left: {
+    "id": 19,
+    "full_name": "Felldir Cruel-Sea",
+    "speechcraft": 16,
+    "credibility": 175,
+    "avatar": "mia"
+  },
+  right:   {
+    "id": 22,
+    "full_name": "ddddfffd",
+    "speechcraft": 10,
+    "credibility": 115,
+    "avatar": "pheonix"
+  },
   turn: "left"
 };
 
