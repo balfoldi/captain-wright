@@ -201,7 +201,7 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow, lawyers }) => {
             Cancel
           </Button>
           <Button variant="danger" onClick={fetchDelete}>
-            yes
+            Yes
           </Button>
         </Modal.Body>
       </Modal>
