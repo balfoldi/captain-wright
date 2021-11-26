@@ -1,9 +1,8 @@
 import {
-  FETCH_PLAYERS_REQUEST,
-  FETCH_PLAYERS_SUCCESS,
   CREATE_PLAYERS,
   DAMAGE_PLAYERS,
   DELETE_PLAYERS,
+  NEXT_TURN,
 } from './playersTypes'
 
 export const createPlayers = ({left, right}) => {
@@ -18,6 +17,11 @@ export const damagePlayers = ({left, right}) => {
     type: DAMAGE_PLAYERS,
     left,
     right,
+  };
+};
+export const nextTurn = () => {
+  return {
+    type: NEXT_TURN
   };
 };
 export const deletePlayers = () => {

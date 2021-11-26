@@ -1,14 +1,14 @@
 import {
-  FETCH_PLAYERS_REQUEST,
-  FETCH_PLAYERS_SUCCESS,
   CREATE_PLAYERS,
   DAMAGE_PLAYERS,
   DELETE_PLAYERS,
+  NEXT_TURN,
 } from './playersTypes'
 
 const playersInitialState = {
-  left: null,
-  right: null,
+  left: {},
+  right: {},
+  turn: "left"
 };
 
 const playersReducer = (state = playersInitialState, action) => {
@@ -31,11 +31,16 @@ const playersReducer = (state = playersInitialState, action) => {
           credibility: state.credibility - action.right,
         },
       };
+    case NEXT_TURN:
+      return {
+        ...state,
+        turn: state.turn == "left" ? "right" : "left"
+      };
     case DELETE_PLAYERS:
       return {
         ...state,
-        left: null,
-        right: null,
+        left: {},
+        right: {},
       };
     default:
       return state;
