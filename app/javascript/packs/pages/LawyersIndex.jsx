@@ -43,10 +43,10 @@ const LawyersIndex = () => {
       </div>
       <div className="d-flex flex-wrap justify-content-around">
         {lawyers.map(lawyer => (
-          <LawyerCard key={lawyer.id} lawyer={lawyer} />
+          <LawyerCard key={lawyer.id} fetchLawyer={lawyer} />
         ))}
       </div>
-      <LawyerForm showNew={showNew} setShowNew={setShowNew} />
+      <LawyerForm show={showNew} setShow={setShowNew} />
     </>
   )
 }
