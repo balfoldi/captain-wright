@@ -1,6 +1,6 @@
 import {
   CREATE_PLAYERS,
-  DAMAGE_PLAYERS,
+  UPDATE_PLAYERS,
   DELETE_PLAYERS,
   NEXT_TURN,
 } from './playersTypes'
@@ -31,17 +31,10 @@ const playersReducer = (state = playersInitialState, action) => {
         left: action.left || state.left,
         right: action.right || state.right,
       };
-    case DAMAGE_PLAYERS:
+    case UPDATE_PLAYERS:
       return {
         ...state,
-        left: {
-          ...state.left,
-          credibility: state.left.credibility - action.left,
-        },
-        right: {
-          ...state.right,
-          credibility: state.right.credibility - action.right,
-        },
+        ...action.players
       };
     case NEXT_TURN:
       return {

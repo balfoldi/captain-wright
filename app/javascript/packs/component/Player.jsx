@@ -11,7 +11,7 @@ import { faLaughSquint } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  damagePlayers,
+  updatePlayers,
   nextTurn
 } from "../redux"
 
@@ -32,15 +32,30 @@ const Player = ({ playerName }) => {
     pheonix: () => <Pheonix playerName={playerName} state={state} />
   }
 
-  const getOpponentName = () => ["left", "right"].find(name => name !== playerName)
+  const opponentName = ["left", "right"].find(name => name !== playerName)
 
 
   const { avatar, full_name, speechcraft, credibility } = fetchPlayersState[playerName]
 
   const handleArgue = () => {
-    dispatch(damagePlayers({ [getOpponentName()]: speechcraft }))
-    console.log(getOpponentName())
-    console.log(damagePlayers({ [getOpponentName()]: speechcraft }))
+    setState("speak")
+    dispatch(updatePlayers({
+      [opponentName]: {
+        ...fetchPlayersState[opponentName],
+        credibility: fetchPlayersState[opponentName].credibility - speechcraft
+      }
+    }))
+    dispatch(nextTurn())
+  }
+
+  const handleDefend = () => {
+    setState("defend")
+    dispatch(updatePlayers({
+      [playerName]: {
+        ...fetchPlayersState[playerName],
+        credibility: fetchPlayersState[playerName].credibility * 1.5
+      }
+    }))
     dispatch(nextTurn())
   }
 
@@ -51,9 +66,9 @@ const Player = ({ playerName }) => {
       <Card>
         <Card.Body className="">
           <p>Speechcraft</p>
-          <ProgressBar className="w-100 align-self-center" variant="warning" animated now={Math.max(0,speechcraft)} />
+          <ProgressBar className="w-100 align-self-center" variant="warning" animated now={Math.max(0, speechcraft)} />
           <p>Credibility</p>
-          <ProgressBar className="w-100 align-self-center" variant="danger" animated now={Math.max(0,credibility)} />
+          <ProgressBar className="w-100 align-self-center" variant="danger" animated now={Math.max(0, credibility)} />
         </Card.Body>
       </Card>
       <Card>
@@ -62,7 +77,7 @@ const Player = ({ playerName }) => {
             Argue{" "}
             <FontAwesomeIcon className="text-warning" icon={faAngry} size="lg" />
           </Button>
-          <Button variant="outline-secondary" className="w-100 text-dark mb-1" disabled={active}>
+          <Button onClick={handleDefend} variant="outline-secondary" className="w-100 text-dark mb-1" disabled={active}>
             Defend{" "}
             <FontAwesomeIcon className="text-secondary" icon={faMehRollingEyes} size="lg" />
           </Button>
