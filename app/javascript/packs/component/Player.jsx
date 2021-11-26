@@ -40,6 +40,7 @@ const Player = ({ playerName }) => {
   const handleArgue = () => {
     dispatch(damagePlayers({ [getOpponentName()]: speechcraft }))
     console.log(getOpponentName())
+    console.log(damagePlayers({ [getOpponentName()]: speechcraft }))
     dispatch(nextTurn())
   }
 
@@ -50,9 +51,9 @@ const Player = ({ playerName }) => {
       <Card>
         <Card.Body className="">
           <p>Speechcraft</p>
-          <ProgressBar className="w-100 align-self-center" variant="warning" animated now={speechcraft / 2} />
+          <ProgressBar className="w-100 align-self-center" variant="warning" animated now={Math.max(0,speechcraft)} />
           <p>Credibility</p>
-          <ProgressBar className="w-100 align-self-center" variant="danger" animated now={fetchPlayersState[playerName].credibility / 2} />
+          <ProgressBar className="w-100 align-self-center" variant="danger" animated now={Math.max(0,credibility)} />
         </Card.Body>
       </Card>
       <Card>

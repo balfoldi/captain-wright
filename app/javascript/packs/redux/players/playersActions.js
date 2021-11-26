@@ -12,7 +12,7 @@ export const createPlayers = ({left, right}) => {
     right,
   };
 };
-export const damagePlayers = ({left, right}) => {
+export const updatePlayer = ({left = 0, right = 0}) => {
   return {
     type: DAMAGE_PLAYERS,
     left,
