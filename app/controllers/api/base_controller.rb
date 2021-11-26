@@ -4,7 +4,7 @@ class Api::BaseController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
   include ApiJson
-  
+
   private
 
   def not_found

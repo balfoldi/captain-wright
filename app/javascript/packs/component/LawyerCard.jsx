@@ -40,7 +40,7 @@ const LawyerCard = ({ fetchLawyer }) => {
   }, [selected, fetchPlayersState])
 
   useEffect(() => {
-    active && createPlayers({[fetchPlayersState.turn]: lawyer})
+    active && createPlayers({ [fetchPlayersState.turn]: lawyer })
   }, [lawyer])
 
   const gifs = {
@@ -55,25 +55,29 @@ const LawyerCard = ({ fetchLawyer }) => {
   const { avatar, full_name, speechcraft, credibility } = lawyer
   return (
     <>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={setPlayerCreate}>
-          {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{displays[selected]}</h1></Card>}
-          <Card.Img src={gifs[avatar]} />
-          <Card.Body>
-            <Card.Title>{full_name}</Card.Title>
-            <ul>
-              <li>Speechcraft: {speechcraft}</li>
-              <li>Credibility: {credibility}</li>
-            </ul>
-          </Card.Body>
-          <Card.Footer className="d-flex justify-content-around">
-            <Button onClick={() => setShowEdit(true)} className={`w-100 opacity-${active ? 100 : 0}`} disabled={!active}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
-          </Card.Footer>
-        </Card>
-      </motion.div>
+      {lawyer.id && (
+        <>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={setPlayerCreate}>
+              {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{displays[selected]}</h1></Card>}
+              <Card.Img src={gifs[avatar]} />
+              <Card.Body>
+                <Card.Title>{full_name}</Card.Title>
+                <ul>
+                  <li>Speechcraft: {speechcraft}</li>
+                  <li>Credibility: {credibility}</li>
+                </ul>
+              </Card.Body>
+              <Card.Footer className="d-flex justify-content-around">
+                <Button onClick={() => setShowEdit(true)} className={`w-100 opacity-${active ? 100 : 0}`} disabled={!active}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
+              </Card.Footer>
+            </Card>
+          </motion.div>
+        </>
+      )}
       <LawyerForm lawyer={lawyer} setLawyer={setLawyer} show={showEdit} setShow={setShowEdit} />
     </>
   )
