@@ -1,17 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
-import Button from "react-bootstrap/Button"
-import LawyerForm from './LawyerForm'
-
-import mia from '../../images/avatars/mia/miaIdle.gif'
-import pheonix from '../../images/avatars/pheonix/pheonixIdle.gif'
-
-import { motion } from "framer-motion"
-
-import { useDispatch, useSelector } from "react-redux";
-import { createPlayers } from "../redux"
-
-import { colors, displays } from "../modules/playersObjects"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
