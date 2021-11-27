@@ -54,7 +54,7 @@ const Player = ({ playerName }) => {
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        credibility: Math.max(100,fetchPlayersState[playerName].credibility + 50)
+        credibility: Math.min(100,fetchPlayersState[playerName].credibility + 50)
       }
     }))
     dispatch(nextTurn())
@@ -65,7 +65,7 @@ const Player = ({ playerName }) => {
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        speechcraft: fetchPlayersState[playerName].speechcraft + 20
+        speechcraft: Math.min(100,fetchPlayersState[playerName].speechcraft + 20)
       }
     }))
     dispatch(nextTurn())
