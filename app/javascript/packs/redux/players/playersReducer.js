@@ -7,24 +7,10 @@ import {
 
 const playersInitialState = {
   left: {
-    "id": 1,
-    "full_name": "Felldir Cruel-Sea",
-    "speechcraft": 30,
-    "credibility": 10,
-    "avatar": "mia",
-    "experience": 90,
-    "level": 2,
-    "specialObjects": [],
+    specialObjects: []
   },
   right: {
-    "id": 2,
-    "full_name": "ddddfffd",
-    "speechcraft": 50,
-    "credibility": 10,
-    "avatar": "pheonix",
-    "experience": 90,
-    "level": 2,
-    "specialObjects": [],
+    specialObjects: []
   },
   turn: "left"
 };
@@ -34,8 +20,8 @@ const playersReducer = (state = playersInitialState, action) => {
     case CREATE_PLAYERS:
       return {
         ...state,
-        left: {...(action.left || state.left), specialObjects: []},
-        right: {...(action.right || state.right), specialObjects: []},
+        left: { ...(action.left || state.left), specialObjects: [] },
+        right: { ...(action.right || state.right), specialObjects: [] },
       };
     case UPDATE_PLAYERS:
       return {

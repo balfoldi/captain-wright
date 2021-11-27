@@ -3,6 +3,7 @@ import React from 'react'
 import AlertTemplate from 'react-alert-template-basic'
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './component/PrivateRoutes';
 
 //redux
 import { Provider } from "react-redux";
@@ -14,11 +15,6 @@ import Courtroom from "./pages/Courtroom"
 import SpecialObjectsChoice from "./pages/SpecialObjectsChoice"
 
 const App = () => {
-  // let location = useLocation();
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  // }, [location])
 
   const options = {
     position: positions.BOTTOM_CENTER,
@@ -28,15 +24,27 @@ const App = () => {
   }
 
   return (
-    <Provider store={store}>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <Routes>
-          <Route path="/court/lawyers" element={<LawyersIndex />} />
-          <Route path="/court/special-objects-choice" element={<SpecialObjectsChoice />} />
-          <Route path="/court/room" element={<Courtroom />} />
-        </Routes>
-      </AlertProvider>
-    </Provider>
+    <div className="court-room-background">
+      <Provider store={store}>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Routes>
+            <Route path="/court/lawyers" element={
+              <LawyersIndex />
+            } />
+            <Route path="/court/special-objects-choice" element={
+              <PrivateRoute>
+                <SpecialObjectsChoice />
+              </PrivateRoute>
+            } />
+            <Route path="/court/room" element={
+              <PrivateRoute>
+                <Courtroom />
+              </PrivateRoute>
+            } />
+          </Routes>
+        </AlertProvider>
+      </Provider>
+    </div>
   );
 };
 

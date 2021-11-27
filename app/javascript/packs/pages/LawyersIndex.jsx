@@ -48,27 +48,13 @@ const LawyersIndex = () => {
       <div className="fixed-top">
         <Navbar bg="light" expand="lg">
           <Container>
-            <i className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose your lawyer!</i>
+            <i className="mr-5"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose your lawyer!</i>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <div className="d-flex justify-content-around">
+              <div className="d-flex justify-content-around w-100">
                 <Button variant="primary" onClick={() => setShowNew(true)}>
                   Add a lawyer
                 </Button>
-                <Button variant="success" onClick={() => dispatch(nextTurn())} disabled={!fetchPlayersState[fetchPlayersState.turn].id}>
-                  Next player!
-                </Button>
-                {fetchPlayersState.left.id && fetchPlayersState.right.id ? (
-                  <Link to="/court/special-objects-choice">
-                    <Button variant="success">
-                      Next
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button className="btn btn-danger m-2" disabled>
-                    Player {displays[fetchPlayersState.turn]} choose your lawyer !
-                  </Button>
-                )}
                 <Button
                   onClick={() => setOpenCasesHistory(!openCasesHistory)}
                   aria-controls="example-collapse-text"
@@ -76,6 +62,20 @@ const LawyersIndex = () => {
                 >
                   View cases history
                 </Button>
+                <Button variant="success" onClick={() => dispatch(nextTurn())} disabled={!fetchPlayersState[fetchPlayersState.turn].id}>
+                  Next player
+                </Button>
+                {fetchPlayersState.left.id && fetchPlayersState.right.id ? (
+                  <Link to="/court/special-objects-choice">
+                    <Button variant="danger">
+                      Go to court!
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button variant="secondary" disabled>
+                    Player {displays[fetchPlayersState.turn]} choose your lawyer !
+                  </Button>
+                )}
               </div>
             </Navbar.Collapse>
           </Container>

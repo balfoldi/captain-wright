@@ -15,7 +15,7 @@ import {
   nextTurn
 } from "../redux"
 
-import { Pheonix, Mia } from "./Avatars"
+import { Pheonix, Mia, Miles, Franziska } from "./Avatars"
 import SpecialObjectCard from './SpecialObjectCard';
 
 const Player = ({ playerName, state, setState }) => {
@@ -30,7 +30,9 @@ const Player = ({ playerName, state, setState }) => {
 
   const renderAvatar = {
     mia: () => <Mia playerName={playerName} state={state} />,
-    pheonix: () => <Pheonix playerName={playerName} state={state} />
+    pheonix: () => <Pheonix playerName={playerName} state={state} />,
+    franziska: () => <Franziska playerName={playerName} state={state} />,
+    miles: () => <Miles playerName={playerName} state={state} />,
   }
 
   const opponentName = ["left", "right"].find(name => name !== playerName)
@@ -95,8 +97,8 @@ const Player = ({ playerName, state, setState }) => {
   }
 
   return (
-    <div>
-      <h1>{full_name}</h1>
+    <div className="vh-100">
+      <h1 className="text-light">{full_name}</h1>
       {renderAvatar[avatar]()}
       <Card>
         <Card.Body className="">
