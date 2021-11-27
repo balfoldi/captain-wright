@@ -39,7 +39,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
-        find_all(:css, "img").first.click
+        find_all(:css, ".card").first.click
         find_all(:css, ".fa-edit").first.click
         fill_in(:full_name, with: full_name)
         click_button("Submit")
@@ -58,14 +58,13 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
-        find_all(:css, "img").first.click
+        find_all(:css, ".card").first.click
         find_all(:css, ".fa-edit").first.click
         click_button("Delete")
         click_button("Yes")
       end
 
       subject { page }
-
       it { is_expected.to_not have_content(full_name) }
     end
   end
