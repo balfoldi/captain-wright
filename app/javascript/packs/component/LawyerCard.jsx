@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
+
 import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button"
+import ProgressBar from "react-bootstrap/ProgressBar"
+
 import LawyerForm from './LawyerForm'
 
 import { Pheonix, Mia } from "./Avatars"
@@ -51,7 +54,7 @@ const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" })
     pheonix: () => <Pheonix playerName={playerName} state={state} />
   }
 
-  const { avatar, full_name, speechcraft, credibility } = lawyer
+  const { avatar, full_name, speechcraft, credibility, experience, level } = lawyer
   return (
     <>
       {lawyer.id && (
@@ -65,10 +68,13 @@ const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" })
               {renderAvatar[avatar]()}
               <Card.Body>
                 <Card.Title>{full_name}</Card.Title>
-                <ul>
-                  <li>Speechcraft: {speechcraft}</li>
-                  <li>Credibility: {credibility}</li>
-                </ul>
+                <p>level: {level} </p>
+                <ProgressBar className="w-100 align-self-center" variant="primary" animated now={experience} />
+                <p>Experience</p>
+                <ProgressBar className="w-100 align-self-center" variant="warning" animated now={speechcraft} />
+                <p>Speechcraft</p>
+                <ProgressBar className="w-100 align-self-center" variant="danger" animated now={credibility} />
+                <p>Credibility</p>
               </Card.Body>
               <Card.Footer className="d-flex justify-content-around">
                 <Button onClick={() => setShowEdit(true)} className="w-100" disabled={!active} hidden={!active}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
