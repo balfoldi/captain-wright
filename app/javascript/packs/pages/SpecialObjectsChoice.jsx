@@ -44,7 +44,6 @@ const SpecialObjectsChoice = () => {
               <h4 className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose one object</h4>
             </Card.Body>
           </Card>
-          <h4 className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose one object</h4>
           <div className="d-flex flex-wrap justify-content-around">
             {specialObjectsList.map(specialObject => (
               <div className="m-1" onClick={() => setPlayerSpecialObject(specialObject)}>
