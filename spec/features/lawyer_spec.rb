@@ -21,7 +21,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
-        click_button("+")
+        click_button("Add a lawyer")
         fill_in(:full_name, with: full_name)
         click_button("Submit")
       end

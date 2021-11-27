@@ -49,24 +49,26 @@ const LawyersIndex = () => {
       <div className="fixed-top">
         <Navbar bg="light" expand="lg">
           <Container>
-            <i className="display-4 text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose your lawyer!</i>
+            <i className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose your lawyer!</i>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+              <div className="d-flex justify-content-around">
                 <Button variant="primary" onClick={() => setShowNew(true)}>
-                  +
+                  Add a lawyer
                 </Button>
-                {fetchPlayersState[fetchPlayersState.turn].id && (
-                  <Button variant="success" onClick={() => dispatch(nextTurn())}>
+                  <Button variant="success" onClick={() => dispatch(nextTurn())} disabled={!fetchPlayersState[fetchPlayersState.turn].id}>
                     Next player!
                   </Button>
-                )}
-                {fetchPlayersState.left.id && fetchPlayersState.right.id && (
+                {fetchPlayersState.left.id && fetchPlayersState.right.id ? (
                   <Link to="/court/room">
                     <Button className="btn btn-danger m-2">
                       Go to the courtroom
                     </Button>
                   </Link>
+                ):(
+                  <Button className="btn btn-danger m-2" disabled>
+                  Player {displays[fetchPlayersState.turn]} choose your lawyer !
+                </Button>
                 )}
                 <Button
                   onClick={() => setOpenCasesHistory(!openCasesHistory)}
@@ -75,7 +77,7 @@ const LawyersIndex = () => {
                 >
                   View cases history
                 </Button>
-              </Nav>
+              </div>
             </Navbar.Collapse>
           </Container>
         </Navbar>
@@ -91,7 +93,7 @@ const LawyersIndex = () => {
           </div>
         </Collapse>
       </div>
-      <div className="d-flex flex-wrap justify-content-around">
+      <div className="d-flex flex-wrap justify-content-around mt-5 pt-2">
         {lawyers.map(lawyer => (
           <LawyerCard key={lawyer.id} fetchLawyer={lawyer} />
         ))}
