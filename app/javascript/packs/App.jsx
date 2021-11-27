@@ -11,6 +11,7 @@ import store from "./redux/store";
 //pages
 import LawyersIndex from "./pages/LawyersIndex"
 import Courtroom from "./pages/Courtroom"
+import SpecialObjectsChoice from "./pages/SpecialObjectsChoice"
 
 const App = () => {
   // let location = useLocation();
@@ -31,6 +32,7 @@ const App = () => {
       <AlertProvider template={AlertTemplate} {...options}>
         <Routes>
           <Route path="/court/lawyers" element={<LawyersIndex />} />
+          <Route path="/court/special-objects-choice" element={<SpecialObjectsChoice />} />
           <Route path="/court/room" element={<Courtroom />} />
         </Routes>
       </AlertProvider>

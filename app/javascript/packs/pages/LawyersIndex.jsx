@@ -5,7 +5,6 @@ import LawyerForm from '../component/LawyerForm'
 import CaseCard from '../component/CaseCard'
 import Collapse from "react-bootstrap/Collapse"
 import Navbar from "react-bootstrap/Navbar"
-import Nav from "react-bootstrap/Nav"
 import Container from "react-bootstrap/Container"
 
 import Button from "react-bootstrap/Button"
@@ -56,19 +55,19 @@ const LawyersIndex = () => {
                 <Button variant="primary" onClick={() => setShowNew(true)}>
                   Add a lawyer
                 </Button>
-                  <Button variant="success" onClick={() => dispatch(nextTurn())} disabled={!fetchPlayersState[fetchPlayersState.turn].id}>
-                    Next player!
-                  </Button>
+                <Button variant="success" onClick={() => dispatch(nextTurn())} disabled={!fetchPlayersState[fetchPlayersState.turn].id}>
+                  Next player!
+                </Button>
                 {fetchPlayersState.left.id && fetchPlayersState.right.id ? (
-                  <Link to="/court/room">
-                    <Button className="btn btn-danger m-2">
-                      Go to the courtroom
+                  <Link to="/court/special-objects-choice">
+                    <Button variant="success">
+                      Next
                     </Button>
                   </Link>
-                ):(
+                ) : (
                   <Button className="btn btn-danger m-2" disabled>
-                  Player {displays[fetchPlayersState.turn]} choose your lawyer !
-                </Button>
+                    Player {displays[fetchPlayersState.turn]} choose your lawyer !
+                  </Button>
                 )}
                 <Button
                   onClick={() => setOpenCasesHistory(!openCasesHistory)}

@@ -16,6 +16,7 @@ import {
 } from "../redux"
 
 import { Pheonix, Mia } from "./Avatars"
+import SpecialObjectCard from './SpecialObjectCard';
 
 const Player = ({ playerName, state, setState }) => {
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const Player = ({ playerName, state, setState }) => {
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        credibility: Math.min(100,fetchPlayersState[playerName].credibility + 50)
+        credibility: Math.min(100, fetchPlayersState[playerName].credibility + 50)
       }
     }))
     dispatch(nextTurn())
@@ -64,7 +65,25 @@ const Player = ({ playerName, state, setState }) => {
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        speechcraft: Math.min(100,fetchPlayersState[playerName].speechcraft + 20)
+        speechcraft: Math.min(100, fetchPlayersState[playerName].speechcraft + 20)
+      }
+    }))
+    dispatch(nextTurn())
+  }
+
+  const handleSpecialObject = (specialObject) => {
+    setState("idle")
+    const useASpecialObject = (specialObjectFilter) => (
+      specialObjectFilter.id !== specialObject.id ? specialObjectFilter : { ...specialObjectFilter, used: true }
+    )
+    dispatch(updatePlayers({
+      [playerName]: {
+        ...fetchPlayersState[playerName],
+        specialObjects: fetchPlayersState[playerName].specialObjects.map(useASpecialObject),
+      },
+      [opponentName]: {
+        ...fetchPlayersState[opponentName],
+        ...specialObject.setStats
       }
     }))
     dispatch(nextTurn())
@@ -90,11 +109,11 @@ const Player = ({ playerName, state, setState }) => {
       <Card>
         <Card.Body>
           <Button onClick={handleArgue} variant="outline-warning" className="w-100 text-dark mb-1" disabled={!active}>
-            Argue{" "}
+            Tell the truth{" "}
             <FontAwesomeIcon className="text-warning" icon={faAngry} size="lg" />
           </Button>
           <Button onClick={handleDefend} variant="outline-secondary" className="w-100 text-dark mb-1" disabled={!active}>
-            Defend{" "}
+            Lie{" "}
             <FontAwesomeIcon className="text-secondary" icon={faMehRollingEyes} size="lg" />
           </Button>
           <Button onClick={handleObjection} variant="outline-danger" className="w-100 text-dark mb-1" disabled={!active}>
@@ -102,6 +121,16 @@ const Player = ({ playerName, state, setState }) => {
             <FontAwesomeIcon className="text-danger" icon={faLaughSquint} size="lg" />
           </Button>
         </Card.Body>
+        <Card.Footer >
+          <i>Special objects</i>
+          <div className="d-flex justify-content-around mt-1">
+            {fetchPlayersState[playerName].specialObjects.map(specialObject => (
+              <div key={specialObject.id} class="d-flex flex-wrap mt-1" onClick={() => active && !specialObject.used && handleSpecialObject(specialObject)}>
+                <SpecialObjectCard specialObject={specialObject} active={active} />
+              </div>
+            ))}
+          </div>
+        </Card.Footer>
       </Card>
     </div>
   )

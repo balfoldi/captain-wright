@@ -12,10 +12,11 @@ export const createPlayers = ({left, right}) => {
     right,
   };
 };
-export const updatePlayers = (players) => {
+export const updatePlayers = ({left, right}) => {
   return {
     type: UPDATE_PLAYERS,
-    players,
+    left,
+    right,
   };
 };
 export const nextTurn = () => {
