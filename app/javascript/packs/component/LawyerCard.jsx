@@ -72,7 +72,7 @@ const LawyerCard = ({ fetchLawyer, freez }) => {
                 </ul>
               </Card.Body>
               <Card.Footer className="d-flex justify-content-around">
-                <Button onClick={() => setShowEdit(true)} className={`w-100 opacity-${active ? 100 : 0}`} disabled={!active}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
+                <Button onClick={() => setShowEdit(true)} className="w-100" disabled={!active} hidden={!active}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
               </Card.Footer>
             </Card>
           </motion.div>

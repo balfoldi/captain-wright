@@ -2,13 +2,13 @@
 require 'rails_helper'
 
 RSpec.feature "LawyerIndex", type: :feature, js: true do
+  subject { page }
+
   describe "lawyer index" do
     context "when a few lawyers exists" do
       let!(:lawyers) { FactoryBot.create_list(:lawyer, 5) }
 
       before { visit "/court/lawyers" }
-
-      subject { page }
 
       it { lawyers.each { |lawyer| is_expected.to have_content(lawyer.full_name) } }
     end
@@ -26,8 +26,6 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
         click_button("Submit")
       end
 
-      subject { page }
-
       it { is_expected.to have_content(full_name) }
     end
   end
@@ -39,13 +37,12 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
-        find_all(:css, ".card", wait: 10).first.click
-        find_all(:css, ".fa-edit").first.click
+        visit "/court/lawyers"
+        find(".card-title", text: lawyers.sample.full_name).click
+        find(:css, ".fa-edit", visible: true).click
         fill_in(:full_name, with: full_name)
         click_button("Submit")
       end
-
-      subject { page }
 
       it { is_expected.to have_content(full_name) }
     end
@@ -58,13 +55,14 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
-        find_all(:css, ".card", wait: 10).first.click
-        find_all(:css, ".fa-edit").first.click
+        visit "/court/lawyers"
+        find(".card-title", text: full_name).click
+        find(:css, ".fa-edit", visible: true).click
         click_button("Delete")
         click_button("Yes")
+        sleep(1)
       end
 
-      subject { page }
       it { is_expected.to_not have_content(full_name) }
     end
   end
