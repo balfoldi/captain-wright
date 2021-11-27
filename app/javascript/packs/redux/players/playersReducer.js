@@ -6,8 +6,12 @@ import {
 } from './playersTypes'
 
 const playersInitialState = {
-  left: {},
-  right: {},
+  left: {
+    specialObjects: []
+  },
+  right: {
+    specialObjects: []
+  },
   turn: "left"
 };
 
