@@ -89,8 +89,14 @@ const Courtroom = () => {
 
   return (
     <div className="d-flex justify-content-around">
-      <Player playerName={"left"} state={statePlayerLeft} setState={setStatePlayerLeft} />
-      <Player playerName={"right"} state={statePlayerRight} setState={setStatePlayerRight} />
+      <div className="row">
+        <div className="col-md-6">
+          <Player playerName={"left"} state={statePlayerLeft} setState={setStatePlayerLeft} />
+        </div>
+        <div className="col-md-6">
+          <Player playerName={"right"} state={statePlayerRight} setState={setStatePlayerRight} />
+        </div>
+      </div>
       <Modal show={showEnd}>
         <Modal.Header>
           <h1>Winner</h1>

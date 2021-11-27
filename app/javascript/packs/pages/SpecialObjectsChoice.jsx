@@ -34,31 +34,23 @@ const SpecialObjectsChoice = () => {
     specialObjectsList.length <= 0 && setCanGoToCourtRoom(true)
   }, [specialObjectsList])
 
-  useEffect(() => {
-    console.log(specialObjectsList, specialObjectsList.length, specialObjectsList.length <= 0)
-  }, [specialObjectsList])
-
-  useEffect(() => {
-    console.log(canGoToCourtRoom)
-  }, [canGoToCourtRoom])
-
   return (
     <Container>
       {!canGoToCourtRoom ? (
         <>
           <h4 className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose one object</h4>
-          <div className="d-flex justify-content-around">
+          <div className="d-flex flex-wrap justify-content-around">
             {specialObjectsList.map(specialObject => (
-              <div onClick={() => setPlayerSpecialObject(specialObject)}>
+              <div className="m-1" onClick={() => setPlayerSpecialObject(specialObject)}>
                 <SpecialObjectCard key={specialObject.id} specialObject={specialObject} active={true} />
               </div>
             ))}
           </div>
         </>
       ) : (
-        <div className="vh-100 d-flex flex-wrap justify-content-center">
-          <Link to="/court/room">
-            <Button variant="danger" className="align-self-center">
+        <div className="vh-100 d-flex justify-content-center">
+          <Link to="/court/room"  className="align-self-center">
+            <Button variant="danger">
               GO TO COURT ROOM!
             </Button>
           </Link>
