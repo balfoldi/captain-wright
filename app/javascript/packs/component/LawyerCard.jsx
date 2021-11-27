@@ -6,7 +6,7 @@ import ProgressBar from "react-bootstrap/ProgressBar"
 
 import LawyerForm from './LawyerForm'
 
-import { Pheonix, Mia } from "./Avatars"
+import { Pheonix, Mia, Miles, Franziska } from "./Avatars"
 
 import { motion } from "framer-motion"
 
@@ -53,7 +53,9 @@ const LawyerCard = ({ fetchLawyer, forceLawyer, freez, state = "idle", playerNam
 
   const renderAvatar = {
     mia: () => <Mia playerName={playerName} state={state} />,
-    pheonix: () => <Pheonix playerName={playerName} state={state} />
+    pheonix: () => <Pheonix playerName={playerName} state={state} />,
+    franziska: () => <Franziska playerName={playerName} state={state} />,
+    miles: () => <Miles playerName={playerName} state={state} />,
   }
 
   return (

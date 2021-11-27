@@ -135,6 +135,8 @@ const LawyerForm = ({ lawyer = {}, setLawyer, show, setShow, lawyers }) => {
               <Form.Select aria-label="Default select example" onChange={handleInputChange} name="avatar" value={input.avatar}>
                 <option value="pheonix">Pheonix</option>
                 <option value="mia">Mia</option>
+                <option value="miles">Miles</option>
+                <option value="franziska">Franziska</option>
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
