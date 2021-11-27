@@ -13,6 +13,10 @@ class Lawyer < ApplicationRecord
   validates :speechcraft, presence: true, numericality: { in: SPEECHCRAFT_LIMITS[:min]..SPEECHCRAFT_LIMITS[:max] }
   validates :credibility, presence: true, numericality: { in: CREDIBILITY_LIMITS[:min]..CREDIBILITY_LIMITS[:max] }
 
+  def cases
+    self.case_wone + self.case_lost
+  end
+
   private
 
   def level_up?
