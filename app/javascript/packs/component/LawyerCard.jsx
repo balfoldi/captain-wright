@@ -18,7 +18,7 @@ import { colors, displays } from "../modules/playersObjects"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" }) => {
+const LawyerCard = ({ fetchLawyer, forceLawyer, freez, state = "idle", playerName = "left" }) => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyer, setLawyer] = useState(fetchLawyer)
   const [selected, setSelected] = useState(false)
@@ -26,9 +26,11 @@ const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" })
   const [showEdit, setShowEdit] = useState(false);
   const dispatch = useDispatch();
 
+  const { id, avatar, full_name, speechcraft, credibility, experience, level } = fetchLawyer ? lawyer : forceLawyer
+
   useEffect(() => {
     ["left", "right"].find(player_name => {
-      if (fetchPlayersState[player_name].id === lawyer.id) {
+      if (fetchPlayersState[player_name].id === id) {
         setSelected(player_name)
         return true
       } else {
@@ -42,7 +44,7 @@ const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" })
   }, [selected, fetchPlayersState])
 
   useEffect(() => {
-    active && createPlayers({ [fetchPlayersState.turn]: lawyer })
+    active && !freez && createPlayers({ [fetchPlayersState.turn]: lawyer })
   }, [lawyer])
 
   const setPlayerCreate = () => {
@@ -54,16 +56,15 @@ const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" })
     pheonix: () => <Pheonix playerName={playerName} state={state} />
   }
 
-  const { avatar, full_name, speechcraft, credibility, experience, level } = lawyer
   return (
     <>
-      {lawyer.id && (
+      {id && (
         <>
           <motion.div
             whileHover={!freez && { scale: 1.05 }}
             whileTap={!freez && { scale: 0.95 }}
           >
-            <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={!freez && setPlayerCreate}>
+            <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={!freez ? setPlayerCreate : () => {}}>
               {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{displays[selected]}</h1></Card>}
               {renderAvatar[avatar]()}
               <Card.Body>
@@ -77,7 +78,7 @@ const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" })
                 <p>Credibility</p>
               </Card.Body>
               <Card.Footer className="d-flex justify-content-around">
-                <Button onClick={() => setShowEdit(true)} className="w-100" disabled={!active} hidden={!active}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
+                <Button onClick={() => setShowEdit(true)} className="w-100" disabled={!active || freez} hidden={!active || freez}><FontAwesomeIcon icon={faEdit} size="3x" /></Button>
               </Card.Footer>
             </Card>
           </motion.div>

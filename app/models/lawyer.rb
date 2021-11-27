@@ -21,5 +21,6 @@ class Lawyer < ApplicationRecord
 
   def level_up
     self.level += 1
+    self.experience = 0
   end
 end

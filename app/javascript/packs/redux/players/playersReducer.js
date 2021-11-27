@@ -10,15 +10,19 @@ const playersInitialState = {
     "id": 1,
     "full_name": "Felldir Cruel-Sea",
     "speechcraft": 30,
-    "credibility": 80,
-    "avatar": "mia"
+    "credibility": 10,
+    "avatar": "mia",
+    "experience": 90,
+    "level": 2,
   },
   right:   {
     "id": 2,
     "full_name": "ddddfffd",
     "speechcraft": 50,
-    "credibility": 60,
-    "avatar": "pheonix"
+    "credibility": 10,
+    "avatar": "pheonix",
+    "experience": 90,
+    "level": 2,
   },
   turn: "left"
 };
