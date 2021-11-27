@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   end
 
   get "/court/lawyers", to: "court#index"
+  get "/court/special-objects-choice", to: "court#index"
   get "/court/room", to: "court#index"
 end

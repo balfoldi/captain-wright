@@ -14,8 +14,9 @@ const playersInitialState = {
     "avatar": "mia",
     "experience": 90,
     "level": 2,
+    "specialObjects": [],
   },
-  right:   {
+  right: {
     "id": 2,
     "full_name": "ddddfffd",
     "speechcraft": 50,
@@ -23,6 +24,7 @@ const playersInitialState = {
     "avatar": "pheonix",
     "experience": 90,
     "level": 2,
+    "specialObjects": [],
   },
   turn: "left"
 };
@@ -32,13 +34,14 @@ const playersReducer = (state = playersInitialState, action) => {
     case CREATE_PLAYERS:
       return {
         ...state,
-        left: action.left || state.left,
-        right: action.right || state.right,
+        left: {...(action.left || state.left), specialObjects: []},
+        right: {...(action.right || state.right), specialObjects: []},
       };
     case UPDATE_PLAYERS:
       return {
         ...state,
-        ...action.players
+        left: action.left || state.left,
+        right: action.right || state.right,
       };
     case NEXT_TURN:
       return {
