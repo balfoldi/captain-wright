@@ -17,10 +17,9 @@ import {
 
 import { Pheonix, Mia } from "./Avatars"
 
-const Player = ({ playerName }) => {
+const Player = ({ playerName, state, setState }) => {
   const dispatch = useDispatch();
   const fetchPlayersState = useSelector((state) => state.playersCreate);
-  const [state, setState] = useState("idle")
   const [active, setActive] = useState(false)
 
   useEffect(() => {
