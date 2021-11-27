@@ -1,10 +1,10 @@
 .banner.row.py-3.mb-2
-  %h3.col-md-4.display-1.align-self-start.text-light.text-center
-    Object
+  %i.col-md-4.align-self-start.text-light.text-center
+    Become the best lawyer in court
   %h1.col-md-4.display-1.align-self-center.text-light.text-center
-    to be
-  %h3.col-md-4.display-1.align-self-end.text-light.text-center
-    Wright
+    Captain Wright
+  %i.col-md-4.align-self-end.text-light.text-center
+    Thow objections at you opponent like a boss
 .container
+  = link_to "Play", "/court/lawyers", class: "btn btn-success w-100"
   = react_component("Presentation")
-  = link_to "Get started", "/court/lawyers", class: "btn btn-primary"

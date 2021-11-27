@@ -8,7 +8,6 @@ import Mia from "../images/Mia.jpg"
 const Presentation = () => {
   return (
     <>
-      <h1 className="my-2">Takes the roles of defense attorneys and investigates cases and defends your clients in court!</h1>
       <div className="row container my-2">
         <div className="p-1 col-md-4">
           <Card className="h-100">
