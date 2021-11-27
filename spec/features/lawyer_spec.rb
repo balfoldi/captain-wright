@@ -60,6 +60,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
         find(:css, ".fa-edit", visible: true).click
         click_button("Delete")
         click_button("Yes")
+        sleep(1)
       end
 
       it { is_expected.to_not have_content(full_name) }
