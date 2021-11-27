@@ -1,6 +1,6 @@
 import {
   CREATE_PLAYERS,
-  DAMAGE_PLAYERS,
+  UPDATE_PLAYERS,
   DELETE_PLAYERS,
   NEXT_TURN,
 } from './playersTypes'
@@ -12,11 +12,10 @@ export const createPlayers = ({left, right}) => {
     right,
   };
 };
-export const damagePlayers = ({left, right}) => {
+export const updatePlayers = (players) => {
   return {
-    type: DAMAGE_PLAYERS,
-    left,
-    right,
+    type: UPDATE_PLAYERS,
+    players,
   };
 };
 export const nextTurn = () => {

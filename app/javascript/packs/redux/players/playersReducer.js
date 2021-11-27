@@ -1,13 +1,25 @@
 import {
   CREATE_PLAYERS,
-  DAMAGE_PLAYERS,
+  UPDATE_PLAYERS,
   DELETE_PLAYERS,
   NEXT_TURN,
 } from './playersTypes'
 
 const playersInitialState = {
-  left: {},
-  right: {},
+  left: {
+    "id": 19,
+    "full_name": "Felldir Cruel-Sea",
+    "speechcraft": 30,
+    "credibility": 80,
+    "avatar": "mia"
+  },
+  right:   {
+    "id": 22,
+    "full_name": "ddddfffd",
+    "speechcraft": 50,
+    "credibility": 60,
+    "avatar": "pheonix"
+  },
   turn: "left"
 };
 
@@ -19,17 +31,10 @@ const playersReducer = (state = playersInitialState, action) => {
         left: action.left || state.left,
         right: action.right || state.right,
       };
-    case DAMAGE_PLAYERS:
+    case UPDATE_PLAYERS:
       return {
         ...state,
-        left: {
-          ...state.left,
-          credibility: state.credibility - action.left,
-        },
-        right: {
-          ...state.right,
-          credibility: state.credibility - action.right,
-        },
+        ...action.players
       };
     case NEXT_TURN:
       return {
