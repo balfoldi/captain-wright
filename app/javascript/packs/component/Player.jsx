@@ -16,12 +16,20 @@ import {
 } from "../redux"
 
 import { Pheonix, Mia, Miles, Franziska } from "./Avatars"
+import ObjectionSprite from "../../images/ObjectionSprite.png"
 import SpecialObjectCard from './SpecialObjectCard';
+import { motion } from 'framer-motion';
 
 const Player = ({ playerName, state, setState }) => {
   const dispatch = useDispatch();
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [active, setActive] = useState(false)
+  const [animating, setAnimating] = useState("initial");
+  const objectionAnimation = {
+    initial: {},
+    fade_in: { x: [-20, 0], opacity: [0, 1] },
+    fade_out: { x: [0, 20], opacity: [1, 0] },
+  };
 
   useEffect(() => {
     setActive(fetchPlayersState.turn === playerName && fetchPlayersState[playerName].credibility > 0)
@@ -64,10 +72,14 @@ const Player = ({ playerName, state, setState }) => {
 
   const handleObjection = () => {
     setState("object")
+    setAnimating("fade_in");
+    setTimeout(() => {
+      setAnimating("fade_out");
+    }, 500);
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        speechcraft: Math.min(100, fetchPlayersState[playerName].speechcraft + 20)
+        speechcraft: Math.min(100, fetchPlayersState[playerName].speechcraft + 50)
       }
     }))
     dispatch(nextTurn())
@@ -96,10 +108,25 @@ const Player = ({ playerName, state, setState }) => {
     setActive(false)
   }
 
+  const sprits = [
+    renderAvatar[avatar](),
+    <motion.div
+      animate={animating}
+      variants={objectionAnimation}
+      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
+      <Card.Img className="img-fluid" src={ObjectionSprite} style={{ height: "10em", width: "15em" }} />
+    </motion.div>,
+  ]
+
   return (
     <div className="vh-100">
-      <h1 className="text-light">{full_name}</h1>
-      {renderAvatar[avatar]()}
+      <div className="d-flex justify-content-around">
+        {playerName === "left" ? sprits : sprits.reverse()}
+      </div>
+      <h1 className="text-light text-center w-100">{full_name}</h1>
       <Card>
         <Card.Body className="">
           <p>Speechcraft</p>
