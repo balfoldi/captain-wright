@@ -26,7 +26,7 @@ const LawyerCard = ({ fetchLawyer, forceLawyer, freez, state = "idle", playerNam
   const [showEdit, setShowEdit] = useState(false);
   const dispatch = useDispatch();
 
-  const { id, avatar, full_name, speechcraft, credibility, experience, level } = fetchLawyer ? lawyer : forceLawyer
+  const { id, avatar, full_name, speechcraft, credibility, experience, level, victory_ratio } = fetchLawyer ? lawyer : forceLawyer
 
   useEffect(() => {
     ["left", "right"].find(player_name => {
@@ -72,6 +72,8 @@ const LawyerCard = ({ fetchLawyer, forceLawyer, freez, state = "idle", playerNam
                 <p>level: {level} </p>
                 <ProgressBar className="w-100 align-self-center" variant="primary" animated now={experience} />
                 <p>Experience</p>
+                <ProgressBar className="w-100 align-self-center" variant="info" animated now={victory_ratio} />
+                <p>Victory ratio</p>
                 <ProgressBar className="w-100 align-self-center" variant="warning" animated now={speechcraft} />
                 <p>Speechcraft</p>
                 <ProgressBar className="w-100 align-self-center" variant="danger" animated now={credibility} />
