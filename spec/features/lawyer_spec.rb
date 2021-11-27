@@ -21,6 +21,8 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
+        navbar_toggle = find(:css, ".navbar-toggler-icon")
+        navbar_toggle.click if navbar_toggle
         click_button("Add a lawyer")
         fill_in(:full_name, with: full_name)
         click_button("Submit")
@@ -36,7 +38,6 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
       let(:full_name) { Faker::Games::ElderScrolls.unique.name }
 
       before do
-        visit "/court/lawyers"
         visit "/court/lawyers"
         find(".card-title", text: lawyers.sample.full_name).click
         find(:css, ".fa-edit", visible: true).click
@@ -54,7 +55,6 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
       let(:full_name) { lawyers.first.full_name }
 
       before do
-        visit "/court/lawyers"
         visit "/court/lawyers"
         find(".card-title", text: full_name).click
         find(:css, ".fa-edit", visible: true).click

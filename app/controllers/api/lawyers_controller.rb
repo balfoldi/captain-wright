@@ -14,7 +14,8 @@ class Api::LawyersController < Api::BaseController
   end
 
   def update
-    render build_object_error_managed(@lawyer.update(lawyer_params))
+    @lawyer.update(lawyer_params)
+    render build_object_error_managed(@lawyer)
   end
 
   def destroy
