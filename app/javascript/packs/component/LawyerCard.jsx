@@ -3,8 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button"
 import LawyerForm from './LawyerForm'
 
-import mia from '../../images/avatars/mia/miaIdle.gif'
-import pheonix from '../../images/avatars/pheonix/pheonixIdle.gif'
+import { Pheonix, Mia } from "./Avatars"
 
 import { motion } from "framer-motion"
 
@@ -16,7 +15,7 @@ import { colors, displays } from "../modules/playersObjects"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const LawyerCard = ({ fetchLawyer, freez }) => {
+const LawyerCard = ({ fetchLawyer, freez, state = "idle", playerName = "left" }) => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyer, setLawyer] = useState(fetchLawyer)
   const [selected, setSelected] = useState(false)
@@ -43,13 +42,13 @@ const LawyerCard = ({ fetchLawyer, freez }) => {
     active && createPlayers({ [fetchPlayersState.turn]: lawyer })
   }, [lawyer])
 
-  const gifs = {
-    pheonix,
-    mia
-  }
-
   const setPlayerCreate = () => {
     dispatch(createPlayers({ [fetchPlayersState.turn]: lawyer }))
+  }
+
+  const renderAvatar = {
+    mia: () => <Mia playerName={playerName} state={state} />,
+    pheonix: () => <Pheonix playerName={playerName} state={state} />
   }
 
   const { avatar, full_name, speechcraft, credibility } = lawyer
@@ -63,7 +62,7 @@ const LawyerCard = ({ fetchLawyer, freez }) => {
           >
             <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={!freez && setPlayerCreate}>
               {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{displays[selected]}</h1></Card>}
-              <Card.Img src={gifs[avatar]} />
+              {renderAvatar[avatar]()}
               <Card.Body>
                 <Card.Title>{full_name}</Card.Title>
                 <ul>

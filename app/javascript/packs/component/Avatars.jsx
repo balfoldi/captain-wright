@@ -13,7 +13,7 @@ import miaObjection from '../../images/avatars/mia/miaObjection.gif'
 import miaSpeech from '../../images/avatars/mia/miaSpeech.gif'
 
 
-export const Pheonix = ({state, playerName}) => {
+export const Pheonix = ({state, playerName = "left"}) => {
 
   const renderGifs = {
     idle: pheonixIdle,
