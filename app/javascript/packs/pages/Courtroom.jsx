@@ -100,7 +100,7 @@ const Courtroom = () => {
         </Modal.Body>
         <Modal.Footer>
           {levelUp ? (
-            <>
+            <div className="w-100 text-center">
               <h4>
                 Lawyer leveled up!
               </h4>
@@ -115,7 +115,7 @@ const Courtroom = () => {
                   + Credibility
                 </Button>
               </div>
-            </>
+            </div>
           ) : (
             <Link to="/court/lawyers">
               <Button variant="success">
