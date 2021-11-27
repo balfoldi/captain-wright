@@ -127,7 +127,7 @@ const Player = ({ playerName, state, setState }) => {
           <i>Special objects</i>
           <div className="d-flex justify-content-around mt-1">
             {fetchPlayersState[playerName].specialObjects.map(specialObject => (
-              <div key={specialObject.id} class="d-flex flex-wrap mt-1" onClick={() => active && !specialObject.used && handleSpecialObject(specialObject)}>
+              <div key={specialObject.id} className="d-flex flex-wrap mt-1" onClick={() => active && !specialObject.used && handleSpecialObject(specialObject)}>
                 <SpecialObjectCard specialObject={specialObject} active={active} />
               </div>
             ))}

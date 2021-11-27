@@ -55,7 +55,7 @@ const Courtroom = () => {
 
   const fetchLevelUpStatistic = (statistic) => {
     const data = { [statistic]: caseResult.winner[statistic] + 10 }
-    console.log(data, caseResult.winner[statistic], statistic)
+    console.log("fetchLevelUpStatistic", caseResult.winner.id)
     fetch("/api/lawyers/" + caseResult.winner.id, {
       method: "PATCH",
       headers: {
@@ -74,9 +74,10 @@ const Courtroom = () => {
   }
 
   useEffect(() => {
-    if (fetchPlayersState.left.credibility <= 0 || fetchPlayersState.right.credibility <= 0) {
-      const winner = statePlayerLeft === "defeated" ? fetchPlayersState.right : fetchPlayersState.left
-      const looser = statePlayerLeft === "defeated" ? fetchPlayersState.left : fetchPlayersState.right
+    const players = [fetchPlayersState.left, fetchPlayersState.right]
+    const looser = players.find((player) => player.credibility <= 0)
+    if (looser) {
+      const winner = players.find((player) => player.credibility > 0)
       setCaseResult({ winner, looser })
       fetchSetLawyerExperience({ winner, looser })
       fetchCaseCreate({ winner, looser })
@@ -84,7 +85,7 @@ const Courtroom = () => {
   }, [fetchPlayersState])
 
   useEffect(() => {
-    console.log(caseResult)
+    console.log("CASE RESULT", caseResult.winner?.id)
   }, [caseResult])
 
   return (
