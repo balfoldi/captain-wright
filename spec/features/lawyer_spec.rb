@@ -56,7 +56,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
       before do
         visit "/court/lawyers"
         visit "/court/lawyers"
-        find(".card-title", text: lawyers.sample.full_name).click
+        find(".card-title", text: full_name).click
         find(:css, ".fa-edit", visible: true).click
         click_button("Delete")
         click_button("Yes")
