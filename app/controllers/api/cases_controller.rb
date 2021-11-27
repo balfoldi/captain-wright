@@ -1,4 +1,4 @@
-class Api::CasesController < ApplicationController
+class Api::CasesController < Api::BaseController
   def index
     render build_objects(Case.all)
   end
