@@ -21,8 +21,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
 
       before do
         visit "/court/lawyers"
-        navbar_toggle = find(:css, ".navbar-toggler-icon")
-        navbar_toggle.click if navbar_toggle
+        find(:css, ".navbar-toggler-icon").click if has_css? ".navbar-toggler-icon"
         click_button("Add a lawyer")
         fill_in(:full_name, with: full_name)
         click_button("Submit")
