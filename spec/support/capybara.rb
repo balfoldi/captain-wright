@@ -17,7 +17,7 @@ end
 Capybara.javascript_driver = :chrome
 #=============== Heroku setup ===============
 
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 2
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
