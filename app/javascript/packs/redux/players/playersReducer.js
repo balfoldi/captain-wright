@@ -7,14 +7,14 @@ import {
 
 const playersInitialState = {
   left: {
-    "id": 19,
+    "id": 1,
     "full_name": "Felldir Cruel-Sea",
     "speechcraft": 30,
     "credibility": 80,
     "avatar": "mia"
   },
   right:   {
-    "id": 22,
+    "id": 2,
     "full_name": "ddddfffd",
     "speechcraft": 50,
     "credibility": 60,
