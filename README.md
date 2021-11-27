@@ -1,76 +1,29 @@
-Ce repo contient le squelette d'une application à compléter dans le cadre du processus de recrutement des développeurs.
-
-Plus d'infos à propos du poste de développeur chez Captain Contrat sur [notre page jobs](https://jobs.captaincontrat.com/)
-
-# Captain Challenge
-
-Bienvenue jeune moussaillon !
-
-Pour intégrer le navire Captain Contrat, tu dois créer une arène où deux héros pourront s'affronter !
-
-Pour ce faire, nous avons mis à ta disposition une appli vide qu'il te faudra compléter.
-
-## Résultat attendu
-
-Le but de ce challenge est de tester ta capacité à monter une petite application [dans le respect des bonnes pratiques](https://medium.com/captain-contrat-tech).  
-On te propose quatre étapes clés, avec des bonus facultatifs.
-
-Nous nous intéresserons tout particulièrement aux choix de conception que tu feras, comment tu abordes les fonctionnalités à développer et ta connaissance des outils que tu utilises.
-
-## Tes armes
-
-- Ruby
-- Rails
-- git
+TEST TECHNIQUE CAPTAIN CONTRAT
 
 ## Étapes
 
 ### 0. ~~Forker~~ Cloner ce repo
 
-Pour commencer, il faudra cloner (ne *PAS* forker) ce repo afin d'y ajouter tes modifications.
+Le repo a été cloné.
+Pour des raisons de compatibilité avec capibara, ruby a été rétrogradé à la version 2.7.4.
+Le CI de heroku a été implémenté ainsi que quelques tests.
 
 ### 1. Page d'accueil statique
 
-C'est l'accueil de l'arène, d'où nous pourrons lancer les combats.  
-Le but est donc de modifier (ou supprimer/remplacer) la page d'accueil existante.
-
-Bonus :
-
-- Un petit texte d'introduction de ton cru. C'est plus fun.
-- Joli design (mais n'y perd pas trop de temps non plus)
-
+Une petite page d'accueil a été ajouté à la racine.
+Afin de garder une page d'accueil solide, react-rails a été utilisé pour construire un composant. La bannière est en haml.
 ### 2. Pouvoir créer un personnage
 
-Données requises :
+Le thème du tribunal a été choisi.
 
-- Nom
-- Points de vie
-- Points d'attaque
-
-Assure-toi qu'il n'y ait pas de grand déséquilibre entre combattants.  
-
-Bonus :
-
-- L'arène n'est pas vide au premier démarrage de l'appli.
-- Les persos ont une photo de profil (ou de face)
-- Crud complet des personnages
-- Ajouter d'autres caractéristiques de ton choix aux personnages
-
+Les avocats ont deux attributs:
+ - la répartie, pour attaquer
+ - la crédibilitée, pour les points de vie
 ### 3. READY? FIGHT!
 
-Pouvoir choisir deux personnages et les faire combattre, puis afficher le gagnant avec un récapitulatif du combat.
-
-Bonus :
-
-- Historique des combats qui ont eu lieu
-- Ajout de points d'expérience (mais pourquoi faire ?)
-- Statistiques des combats : taux de victoire par perso et tout ça
-
+Les affrontements se déroulent au tour par tour.
+Les avocats ont plusieurs actions possibles.
+Les statistiques des personnages sont sauvegardés et consultable à l'index des avocats.
 ### 4. Des armes
 
-Pouvoir assigner une arme aux personnages avant le combat.
-
-Bonus :
-
-- Il n'y a pas que les armes dans la vie, il y a des boucliers aussi
-- Pouvoir utiliser plusieurs équipements
+Avant chaque procès, les avocats choisissent deux objets spéciaux qui leur permettent de retourner la situation en leur faveur.
