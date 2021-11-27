@@ -97,8 +97,8 @@ const Player = ({ playerName, state, setState }) => {
   }
 
   return (
-    <div>
-      <h1>{full_name}</h1>
+    <div className="vh-100">
+      <h1 className="text-light">{full_name}</h1>
       {renderAvatar[avatar]()}
       <Card>
         <Card.Body className="">

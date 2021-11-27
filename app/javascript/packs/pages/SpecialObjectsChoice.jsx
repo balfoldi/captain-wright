@@ -11,6 +11,7 @@ import { colors, displays } from "../modules/playersObjects"
 
 import specialObjects from "../modules/specialObjects"
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 const SpecialObjectsChoice = () => {
   const dispatch = useDispatch()
@@ -43,10 +44,14 @@ const SpecialObjectsChoice = () => {
   }, [canGoToCourtRoom])
 
   return (
-    <Container>
+    <Container className="vh-100 pt-5">
       {!canGoToCourtRoom ? (
         <>
-          <h4 className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose one object</h4>
+          <Card className="mb-5">
+            <Card.Body>
+              <h4 className="text-center"><strong className={`text-${colors[fetchPlayersState.turn]}`}>{displays[fetchPlayersState.turn]}</strong> choose one object</h4>
+            </Card.Body>
+          </Card>
           <div className="d-flex justify-content-around">
             {specialObjectsList.map(specialObject => (
               <div onClick={() => setPlayerSpecialObject(specialObject)}>

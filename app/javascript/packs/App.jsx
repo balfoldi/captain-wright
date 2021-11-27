@@ -24,25 +24,27 @@ const App = () => {
   }
 
   return (
-    <Provider store={store}>
-      <AlertProvider template={AlertTemplate} {...options}>
-        <Routes>
-          <Route path="/court/lawyers" element={
-            <LawyersIndex />
-          } />
-          <Route path="/court/special-objects-choice" element={
-            <PrivateRoute>
-              <SpecialObjectsChoice />
-            </PrivateRoute>
-          } />
-          <Route path="/court/room" element={
-            <PrivateRoute>
-              <Courtroom />
-            </PrivateRoute>
-          } />
-        </Routes>
-      </AlertProvider>
-    </Provider>
+    <div className="court-room-background">
+      <Provider store={store}>
+        <AlertProvider template={AlertTemplate} {...options}>
+          <Routes>
+            <Route path="/court/lawyers" element={
+              <LawyersIndex />
+            } />
+            <Route path="/court/special-objects-choice" element={
+              <PrivateRoute>
+                <SpecialObjectsChoice />
+              </PrivateRoute>
+            } />
+            <Route path="/court/room" element={
+              <PrivateRoute>
+                <Courtroom />
+              </PrivateRoute>
+            } />
+          </Routes>
+        </AlertProvider>
+      </Provider>
+    </div>
   );
 };
 
