@@ -18,7 +18,7 @@ export const Pheonix = ({state, playerName}) => {
   const renderGifs = {
     idle: pheonixIdle,
     defend: pheonixNo,
-    objected: pheonixObjected,
+    defeated: pheonixObjected,
     object: pheonixObjection,
     speak: pheonixSpeech,
   }
@@ -35,7 +35,7 @@ export const Mia = ({state, playerName}) => {
   const renderGifs = {
     idle: miaIdle,
     defend: miaNo,
-    objected: miaObjected,
+    defeated: miaObjected,
     object: miaObjection,
     speak: miaSpeech,
   }

@@ -24,7 +24,8 @@ const Player = ({ playerName }) => {
   const [active, setActive] = useState(false)
 
   useEffect(() => {
-    setActive(fetchPlayersState.turn === playerName)
+    setActive(fetchPlayersState.turn === playerName && fetchPlayersState[playerName].credibility > 0)
+    fetchPlayersState[playerName].credibility <= 0 && handleDefeat()
   }, [fetchPlayersState])
 
   const renderAvatar = {
@@ -53,7 +54,7 @@ const Player = ({ playerName }) => {
     dispatch(updatePlayers({
       [playerName]: {
         ...fetchPlayersState[playerName],
-        credibility: fetchPlayersState[playerName].credibility + 50
+        credibility: Math.max(100,fetchPlayersState[playerName].credibility + 50)
       }
     }))
     dispatch(nextTurn())
@@ -70,6 +71,11 @@ const Player = ({ playerName }) => {
     dispatch(nextTurn())
   }
 
+  const handleDefeat = () => {
+    setState("defeated")
+    setActive(false)
+  }
+
   return (
     <div>
       <h1>{full_name}</h1>
@@ -84,16 +90,16 @@ const Player = ({ playerName }) => {
       </Card>
       <Card>
         <Card.Body>
-          <Button onClick={handleArgue} variant="outline-warning" className="w-100 text-dark mb-1" disabled={active}>
+          <Button onClick={handleArgue} variant="outline-warning" className="w-100 text-dark mb-1" disabled={!active}>
             Argue{" "}
             <FontAwesomeIcon className="text-warning" icon={faAngry} size="lg" />
           </Button>
-          <Button onClick={handleDefend} variant="outline-secondary" className="w-100 text-dark mb-1" disabled={active}>
+          <Button onClick={handleDefend} variant="outline-secondary" className="w-100 text-dark mb-1" disabled={!active}>
             Defend{" "}
             <FontAwesomeIcon className="text-secondary" icon={faMehRollingEyes} size="lg" />
           </Button>
-          <Button onClick={handleObjection} variant="outline-danger" className="w-100 text-dark mb-1" disabled={active}>
-            Object!{" "}
+          <Button onClick={handleObjection} variant="outline-danger" className="w-100 text-dark mb-1" disabled={!active}>
+            Objection!{" "}
             <FontAwesomeIcon className="text-danger" icon={faLaughSquint} size="lg" />
           </Button>
         </Card.Body>
