@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :lawyers, except: [:edit, :new]
-    resources :lawyers, only: [:create, :index]
+    resources :cases, only: [:create, :index]
   end
 
   get "/court/lawyers", to: "court#index"
