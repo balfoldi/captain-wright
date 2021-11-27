@@ -16,7 +16,7 @@ import { colors, displays } from "../modules/playersObjects"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-const LawyerCard = ({ fetchLawyer }) => {
+const LawyerCard = ({ fetchLawyer, freez }) => {
   const fetchPlayersState = useSelector((state) => state.playersCreate);
   const [lawyer, setLawyer] = useState(fetchLawyer)
   const [selected, setSelected] = useState(false)
@@ -58,10 +58,10 @@ const LawyerCard = ({ fetchLawyer }) => {
       {lawyer.id && (
         <>
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={!freez && { scale: 1.05 }}
+            whileTap={!freez && { scale: 0.95 }}
           >
-            <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={setPlayerCreate}>
+            <Card className={`m-2 shadow border-${selected ? colors[selected] : "secondary"}`} style={{ width: "16rem" }} onClick={!freez && setPlayerCreate}>
               {selected && <Card className={`text-light bg-${selected && colors[selected]} round position-absolute`} disabled={true}><h1>{displays[selected]}</h1></Card>}
               <Card.Img src={gifs[avatar]} />
               <Card.Body>

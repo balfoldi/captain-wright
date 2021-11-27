@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button"
 import LawyerForm from '../component/LawyerForm'
 
 import { useDispatch, useSelector } from "react-redux";
-import { nextTurn } from "../redux"
+import { nextTurn, deletePlayers } from "../redux"
 
 import { colors, displays } from "../modules/playersObjects"
 
@@ -24,6 +24,7 @@ const LawyersIndex = () => {
   };
 
   useEffect(() => {
+    dispatch(deletePlayers())
     fetchLawyers()
   }, [])
 
@@ -44,18 +45,18 @@ const LawyersIndex = () => {
         )}
         {fetchPlayersState.left.id && fetchPlayersState.right.id && (
           <Link to="/court/room">
-          <Button className="btn btn-danger m-2">
-            Go to the courtroom
-          </Button>
+            <Button className="btn btn-danger m-2">
+              Go to the courtroom
+            </Button>
           </Link>
         )}
       </div>
       <div className="d-flex flex-wrap justify-content-around">
         {lawyers.map(lawyer => (
-          <LawyerCard key={lawyer.id} fetchLawyer={lawyer} setLawyers={setLawyers} />
+          <LawyerCard key={lawyer.id} fetchLawyer={lawyer} />
         ))}
       </div>
-      <LawyerForm show={showNew} setShow={setShowNew} lawyers={lawyers}/>
+      <LawyerForm show={showNew} setShow={setShowNew} lawyers={lawyers} />
     </>
   )
 }
