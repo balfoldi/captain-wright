@@ -61,6 +61,7 @@ RSpec.feature "LawyerIndex", type: :feature, js: true do
         click_button("Delete")
         click_button("Yes")
       end
+
       it { is_expected.to_not have_content(full_name) }
     end
   end
