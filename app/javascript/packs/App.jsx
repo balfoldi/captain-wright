@@ -30,11 +30,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...options}>
-        <Routes>
-          <Route path="/court/lawyers" element={<LawyersIndex />} />
-          <Route path="/court/special-objects-choice" element={<SpecialObjectsChoice />} />
-          <Route path="/court/room" element={<Courtroom />} />
-        </Routes>
+        <div className="court-room-background">
+          <Routes>
+            <Route path="/court/lawyers" element={<LawyersIndex />} />
+            <Route path="/court/special-objects-choice" element={<SpecialObjectsChoice />} />
+            <Route path="/court/room" element={<Courtroom />} />
+          </Routes>
+        </div>
       </AlertProvider>
     </Provider>
   );

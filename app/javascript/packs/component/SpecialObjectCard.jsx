@@ -9,7 +9,7 @@ const SpecialObjectCard = ({ specialObject, active }) => {
   return (
     <motion.div
       whileHover={active && !used && { scale: 1.05 }}
-      whileTap={active && !used && { y: -100 }}
+      whileTap={active && !used && { y: 100 }}
     >
       <Card className={`${used ? "bg-secondary" : ""}`} style={{ width: "15rem" }} className>
         <Card.Img className={`${used ? "opacity-0" : ""}`} variant="top" src={image} style={{ height: "15rem" }} />
