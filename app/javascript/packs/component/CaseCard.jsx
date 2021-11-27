@@ -41,7 +41,7 @@ const CaseCard = ({ caseResult, lawyers }) => {
                 <FontAwesomeIcon className="text-warning" icon={faCrown} size="3x" />
               </div>
               <div className="d-flex justify-content-center">
-                <LawyerCard fetchLawyer={winner} playerName="left" freez />
+                <LawyerCard fetchLawyer={winner} playerName="left" state="object" freez />
               </div>
             </div>
             <div className="col-6">
@@ -51,7 +51,7 @@ const CaseCard = ({ caseResult, lawyers }) => {
                 <FontAwesomeIcon className="text-secondary" icon={faPoo} size="3x" />
               </div>
               <div className="d-flex justify-content-center">
-                <LawyerCard fetchLawyer={looser} playerName="right" freez />
+                <LawyerCard fetchLawyer={looser} playerName="right" state="defeated" freez />
               </div>
             </div>
           </div>
