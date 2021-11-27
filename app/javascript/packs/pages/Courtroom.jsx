@@ -47,8 +47,8 @@ const Courtroom = () => {
       .then((response) => {
         response.level != winner.level && setLevelUp(true)
         setCaseResult({
-          looser,
           winner: response,
+          looser,
         })
       })
   }
@@ -66,8 +66,8 @@ const Courtroom = () => {
       .then((response) => response.json())
       .then((response) => {
         setCaseResult({
-          looser: caseResult.looser,
           winner: response,
+          looser: caseResult.looser,
         })
         setLevelUp(false)
       })
