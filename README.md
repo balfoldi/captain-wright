@@ -1,11 +1,13 @@
 TEST TECHNIQUE CAPTAIN CONTRAT
 
+Lien de production : https://captain-wright-production.herokuapp.com/
+
 ## Étapes
 
 ### 0. ~~Forker~~ Cloner ce repo
 
 Le repo a été cloné.
-Pour des raisons de compatibilité avec capibara, ruby a été rétrogradé à la version 2.7.4.
+Pour des raisons de compatibilité avec capybara, ruby a été rétrogradé à la version 2.7.4.
 Le CI de heroku a été implémenté ainsi que quelques tests.
 
 ### 1. Page d'accueil statique
